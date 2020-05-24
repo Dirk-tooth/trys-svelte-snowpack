@@ -9,7 +9,7 @@
       life: 20,
       id: n.length + 1
     }])
-    console.log(players);
+    console.log($players);
   }
 
 </script>
