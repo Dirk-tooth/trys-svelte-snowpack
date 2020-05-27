@@ -1,11 +1,11 @@
 <script>
   import { onMount } from 'svelte';
+  import CounterCard from './counter.svelte';
   import { players } from './stores'
 
   export let id;
 
-  let life;
-  let name;
+  let life, name, counters = [];
 
   onMount(() => {
     life = 20
@@ -32,6 +32,22 @@
       }
       return acc;
     },[]))
+  }
+
+  function removeCounter(event) {
+    counters = counters.reduce((acc, counter) => {
+      console.log("counter", counter, "acc", acc);
+      if (counter.id !== event.detail.id) {
+        return [...acc, counter];
+      }
+      return acc;
+    },[])
+  }
+
+  function addCounter() {
+    counters = [...counters, {
+      id: counters.length == 0 ? 1 : counters[counters.length - 1].id + 1
+    }]
   }
 
 </script>
@@ -81,5 +97,12 @@
     <p>{life}</p>
     <button on:click={incrrement}>+</button>
   </div>
+  <button on:click={() => addCounter()}>+ counters</button>
   <button on:click={() => reset(20)}>reset to 20</button>
+  {#each counters as counter (counter.id)}
+    <CounterCard
+      on:remove={removeCounter}
+      id={counter.id}
+    />
+  {/each}
 </div>

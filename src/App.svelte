@@ -53,7 +53,7 @@
 
 <div class="App">
   <div class="header">
-    <div>magicJS</div>
+    <div>{"<magicJS>"}</div>
     <div class="by-line">by <a href="https://github.com/dirk-tooth">dirk-tooth</a></div>
   </div>
   <button on:click={addPlayer}>+ Add Player</button>
