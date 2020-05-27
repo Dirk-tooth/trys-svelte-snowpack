@@ -12,19 +12,19 @@
     name = "Player"
   })
 
-  function incrrement(id) {
+  function incrrement() {
     life += 1;
   }
 
-  function decrrement(id) {
+  function decrrement() {
     life -= 1;
   }
 
-  function reset(id, newLife) {
+  function reset(newLife) {
     life = newLife;
   }
 
-  function rremovePlayer(id) {
+  function removePlayer(id) {
     players.set($players.reduce((acc, player) => {
       console.log("player", player, "acc", acc);
       if (player.id !== id) {
@@ -74,7 +74,7 @@
     placeholder={name + " " + id}
     value={name === "Player" ? null : name}
   >
-  <button on:click={() => rremovePlayer(id)}>X</button>
+  <button on:click={() => removePlayer(id)}>X</button>
   <div class="life">
     <button on:click={decrrement}>-</button>
     <p>{life}</p>
