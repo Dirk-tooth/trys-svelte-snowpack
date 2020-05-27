@@ -48,6 +48,7 @@
     border: none;
     border-bottom: 1px solid black;
     font-size: 1rem;
+    border-radius: none;
   }
   button {
     border: none;
