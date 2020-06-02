@@ -11,7 +11,10 @@
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/svelte": "^3.0.0",
     "jest": "^25.4.0",
-    "snowpack": "^2.0.0-0",
+    "snowpack": "2.2.1",
     "svelte": "^3.21.0"
+  },
+  "dependencies": {
+    "@okta/okta-signin-widget": "^4.1.1"
   }
 }

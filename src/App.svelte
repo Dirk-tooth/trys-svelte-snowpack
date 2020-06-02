@@ -1,13 +1,9 @@
 <script>
 
-  import PlayerCard from './player.svelte'
-  import { players } from './stores'
-
-  function addPlayer() {
-    players.update(n => [...n, {
-      id: n[n.length - 1].id + 1
-    }])
-  }
+  import LoginForm from './loginForm.svelte';
+  import RoomIdentifier from './roomIdentifier.svelte';
+  import Scores from './score.svelte';
+  import Video from './video.svelte';
 
 </script>
 
@@ -30,17 +26,6 @@
   .App {
     text-align: center;
   }
-  .player-area {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  button {
-    border: none;
-    padding: 0.5rem 0.75rem;
-    font-size: 1.5rem;
-    background: transparent;
-  }
   .by-line {
     font-size: .75rem;
     color: #999;
@@ -56,14 +41,9 @@
     <div>{"<magicJS>"}</div>
     <div class="by-line">by <a href="https://github.com/dirk-tooth">dirk-tooth</a></div>
   </div>
-  <button on:click={addPlayer}>+ Add Player</button>
-  <div class="player-area">
-  {#each $players as player (player.id)}
-    <PlayerCard
-      name={player.name}
-      life={player.life}
-      id={player.id}
-    />
-  {/each}
-  </div>
+  <LoginForm/>
+  <RoomIdentifier/>
+  <Scores/>
+  <Video/>
+
 </div>
