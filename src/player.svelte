@@ -1,16 +1,19 @@
 <script>
   import { onMount } from 'svelte';
   import CounterCard from './counter.svelte';
-  import { players } from './stores'
+  import { players } from './stores';
 
   export let id;
+  export let showDice = false;
 
-  let life, name, counters = [];
+  let life,
+    name,
+    counters = [];
 
   onMount(() => {
-    life = 20
-    name = "Player"
-  })
+    life = 20;
+    name = 'Player';
+  });
 
   function incrrement() {
     life += 1;
@@ -25,31 +28,35 @@
   }
 
   function removePlayer(id) {
-    players.set($players.reduce((acc, player) => {
-      console.log("player", player, "acc", acc);
-      if (player.id !== id) {
-        return [...acc, player];
-      }
-      return acc;
-    },[]))
+    players.set(
+      $players.reduce((acc, player) => {
+        console.log('player', player, 'acc', acc);
+        if (player.id !== id) {
+          return [...acc, player];
+        }
+        return acc;
+      }, [])
+    );
   }
 
   function removeCounter(event) {
     counters = counters.reduce((acc, counter) => {
-      console.log("counter", counter, "acc", acc);
+      console.log('counter', counter, 'acc', acc);
       if (counter.id !== event.detail.id) {
         return [...acc, counter];
       }
       return acc;
-    },[])
+    }, []);
   }
 
   function addCounter() {
-    counters = [...counters, {
-      id: counters.length == 0 ? 1 : counters[counters.length - 1].id + 1
-    }]
+    counters = [
+      ...counters,
+      {
+        id: counters.length == 0 ? 1 : counters[counters.length - 1].id + 1,
+      },
+    ];
   }
-
 </script>
 
 <style>
@@ -58,7 +65,7 @@
     background: white;
     padding: 1rem;
     margin: 1rem;
-    box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.75);
   }
   input {
     border: none;
@@ -84,14 +91,22 @@
   .life button {
     font-size: 2rem;
   }
+  .d20 {
+    margin-top: 20px;
+    height: 45px;
+    padding-top: 13%;
+    background: center / contain no-repeat url(./d20.png);
+  }
 </style>
 
 <div class="player-card">
   <input
-    placeholder={name + " " + id}
-    value={name === "Player" ? null : name}
-  >
+    placeholder={name + ' ' + id}
+    value={name === 'Player' ? null : name} />
   <button on:click={() => removePlayer(id)}>X</button>
+  {#if showDice}
+    <div class="d20">{Math.floor(Math.random() * 20)}</div>
+  {/if}
   <div class="life">
     <button on:click={decrrement}>-</button>
     <p>{life}</p>
@@ -100,9 +115,6 @@
   <button on:click={() => addCounter()}>+ counters</button>
   <button on:click={() => reset(20)}>reset to 20</button>
   {#each counters as counter (counter.id)}
-    <CounterCard
-      on:remove={removeCounter}
-      id={counter.id}
-    />
+    <CounterCard on:remove={removeCounter} id={counter.id} />
   {/each}
 </div>
