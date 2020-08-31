@@ -41,7 +41,7 @@
     <div>{"<magicJS>"}</div>
     <div class="by-line">by <a href="https://github.com/dirk-tooth">dirk-tooth</a></div>
   </div>
-  <LoginForm/>
+  <!-- <LoginForm/> -->
   <RoomIdentifier/>
   <Scores/>
   <Video/>
