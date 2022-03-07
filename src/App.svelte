@@ -23,6 +23,7 @@
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #aabbcc;
+    touch-action: manipulation;
   }
   .header {
     margin: 0;
